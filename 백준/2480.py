@@ -15,3 +15,4 @@ elif b == c:
 else:
     total = max(a,b,c)*100
     print(total)
+

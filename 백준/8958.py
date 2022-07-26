@@ -10,7 +10,7 @@ for i in range(1,T+1):
             check_list.append(1)
         else:
             check_list.append(0)
-    print(check_list)
+
     for l in range(1, len(check_list)):
         if a[l-1] == 'O' and a[l] == 'O':
             check_list[l] += check_list[l-1]
