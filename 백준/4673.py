@@ -6,12 +6,12 @@ for i in range(1,10001):
         if j < 10:
             k = j + j%10
             if k == i:
-                pass
+                break
             else:
-                print(k)
+                print(i)
         elif j < 100:
             k = j + j//10 + j%10
             if k == i:
-                pass
+                break
             else:
-                print(k)
+                print(i)

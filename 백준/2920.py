@@ -1,6 +1,3 @@
-import re
-
-
 N = list(map(int,input().split()))
 
 if N == sorted(N):
