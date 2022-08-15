@@ -1,4 +1,4 @@
 n=int(input())
-a=int(input().split())
+a=map(int,input().split())
 
 print(min(a))
