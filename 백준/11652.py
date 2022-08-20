@@ -7,15 +7,16 @@ for _ in range(N):
         dict[num] += 1
     else:
         dict[num] = 1
-low_val = 0
+
+low_cnt = 0
+max_val = max(dict.values())
 for k,v in dict.items():
-    if max(dict.values()) == v:
-        if low_val == 0:
-            low_val = k
+    if v == max_val:
+        if low_cnt == 0:
+            low_cnt = k
         else:
-            if low_val < k:
+            if low_cnt < k:
                 continue
             else:
-                low_val = k
-
-print(low_val)
+                low_cnt = k
+print(low_cnt)
