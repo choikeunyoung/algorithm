@@ -1,19 +1,21 @@
-from collections import deque
-N=int(input())
+import sys
+N=int(sys.stdin.readline())
 dict = {}
 for _ in range(N):
-    num = int(input())
+    num = int(sys.stdin.readline())
     if num in dict:
         dict[num] += 1
     else:
         dict[num] = 1
-low_list = deque([])
-
-for k,v in sorted(dict.items()):
+low_val = 0
+for k,v in dict.items():
     if max(dict.values()) == v:
-        low_list.append(k)
+        if low_val == 0:
+            low_val = k
+        else:
+            if low_val < k:
+                continue
+            else:
+                low_val = k
 
-if len(low_list) >= 2:
-    print(low_list.popleft())
-else:
-    print(low_list.popleft())
+print(low_val)
