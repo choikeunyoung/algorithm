@@ -1,21 +1,39 @@
-T = int(input())
-l = 0
-cha = [] # 차를 추가할 리스트
-check_list=[] # index를 확인할 리스트 생성
-mount_list = list(map(int,input().split())) #input 값 생성
-for j in range(0,len(mount_list)-1): # 앞 뒤 수를 비교하는 부분
-    if mount_list[j] < mount_list[j+1]:
-        pass
-    elif mount_list[j] == mount_list[j+1]:
-        check_list.append(j)
-    else:
-        check_list.append(j)
+A_card = []
+B_card = []
+for i in range(2):
+    card_num = list(map(int, input().split()))
+    if i == 0:
+        A_card = card_num
+    if i == 1:
+        B_card = card_num
 
-if not check_list:
-    print("0")
+A_point = 0
+B_point = 0
+check_list = []
+for j in range(10):
+    if A_card[j] > B_card[j]:
+        A_point += 3
+        check_list.append("A")
+    if A_card[j] < B_card[j]:
+        B_point += 3
+        check_list.append("B")
+    if A_card[j] == B_card[j]:
+        A_point += 1
+        B_point += 1
+        check_list.append("D")
+
+print(A_point, B_point)
+if check_list.count("D") == 10:
+    print("D")
 else:
-    check_list.append(j+1)
-    for k in check_list:
-        cha.append(int(mount_list[k])-int(mount_list[l]))
-        l = k+1
-    print(max(cha))    
+    if A_point > B_point:
+        print("A")
+    if B_point > A_point:
+        print("B")
+    if (A_point == B_point) and (check_list[-1] == "D"):
+        for i in check_list[::-1]:
+            if i == "D":
+                continue
+            if i != "D":
+                print(i)
+                break

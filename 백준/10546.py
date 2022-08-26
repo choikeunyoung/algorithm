@@ -1,7 +1,8 @@
-N = int(input())
+import sys
+N = int(sys.stdin.readline())
 dict = {}
 for _ in range(N*2-1):
-    names = input()
+    names = sys.stdin.readline()
     if _ <= N-1:
         if names in dict:
             dict[names] += 1
