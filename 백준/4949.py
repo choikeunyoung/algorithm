@@ -2,22 +2,26 @@ import sys
 
 while True:
     sent = sys.stdin.readline()
-    cnt = 0
-    r_cnt = 0
-    print(sent)
+    s_cnt = 0
+    b_cnt = 0
+    flag = 0
     if sent == '.':
         break
     else:
         for j in sent:
-            if j =='(' or j == '[':
-                cnt += 1
-            elif j == ']' or j == ')':
-                if cnt == 0:
-                    r_cnt += 1
-                else:
-                    cnt += 1
-    
-    if cnt == 0 and r_cnt == 0:
+            if j =='(':
+                s_cnt += 1
+            elif j == '[':
+                b_cnt += 1
+            elif j == ']' and b_cnt != 0:
+                b_cnt -= 1
+            elif j == ']' and b_cnt == 0:
+                print('no')
+                break
+            elif j == ')' and s_cnt != 0:
+                s_cnt -= 1
+            elif j == ')' and s_cnt == 0:
+                print('no')
+                break
+    if s_cnt == 0 and b_cnt == 0:
         print('yes')
-    else:
-        print('no')
