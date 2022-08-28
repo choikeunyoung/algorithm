@@ -1,27 +1,31 @@
 import sys
 
 while True:
-    sent = sys.stdin.readline()
+    sent = sys.stdin.readline().rstrip()
+    s_list = []
     s_cnt = 0
-    b_cnt = 0
-    flag = 0
     if sent == '.':
+        print('yes')
         break
     else:
         for j in sent:
             if j =='(':
-                s_cnt += 1
+                s_list.append(j)
             elif j == '[':
-                b_cnt += 1
-            elif j == ']' and b_cnt != 0:
-                b_cnt -= 1
-            elif j == ']' and b_cnt == 0:
-                print('no')
-                break
-            elif j == ')' and s_cnt != 0:
-                s_cnt -= 1
-            elif j == ')' and s_cnt == 0:
-                print('no')
-                break
-    if s_cnt == 0 and b_cnt == 0:
+                s_list.append(j)
+            elif j == ']' and len(s_list) == 0:
+                s_list.append(j)
+            elif j == ']' and s_list[-1] != '[':
+                s_list.append(j)
+            elif j == ']' and s_list[-1] == '[':
+                s_list.pop()
+            elif j == ')' and len(s_list) == 0:
+                s_list.append(j)
+            elif j == ')' and s_list[-1] != '(':
+                s_list.append(j)
+            elif j == ')' and s_list[-1] == '(':
+                s_list.pop()
+    if len(s_list) == 0:
         print('yes')
+    else:
+        print('no')
