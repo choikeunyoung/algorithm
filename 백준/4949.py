@@ -5,7 +5,6 @@ while True:
     s_list = []
     s_cnt = 0
     if sent == '.':
-        print('yes')
         break
     else:
         for j in sent:
