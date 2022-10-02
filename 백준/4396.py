@@ -35,7 +35,7 @@ else:
             if check_matrix[i][j] == "." and matrix_1[i][j] == "*":
                 print("*", end="")
             elif check_matrix[i][j] == "." and matrix_1[i][j] != "*":
-                print("x", end="")
+                print(".", end="")
             else:
                 print(check_matrix[i][j], end="")
         print()
