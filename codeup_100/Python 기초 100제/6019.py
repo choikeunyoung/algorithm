@@ -1,4 +1,2 @@
-a = input()
-b = input()
-
-print(b, a)
+a,b,c = input().split(".")
+print(c,b,a,sep="-")

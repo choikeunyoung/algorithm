@@ -23,7 +23,6 @@ for i in range(N):
         elif matrix_1[i][j] == "*" and matrix_2[i][j] == "x":
             check_matrix[i][j] = "*"
             check = 1
-print(check_matrix)
 if check != 1:
     for i in check_matrix:
         for j in i:

@@ -1,6 +1,6 @@
 T = int(input())
 for i in range(T):
-    num_list = list(map(int,input().split()))
+    num_list = list(map(int, input().split()))
     nums = 0
     cnt = 0
     num_index = 0
@@ -14,5 +14,4 @@ for i in range(T):
             nums = 0
             final_list.append(num_list.pop(num_index))
             cnt = 0
-        
     print(final_list[-1])

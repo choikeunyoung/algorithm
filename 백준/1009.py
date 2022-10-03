@@ -1,11 +1,16 @@
 import sys
 
-T = int(sys.stdin.readline())
+input = sys.stdin.readline
+T = int(input())
 
 for i in range(T):
     c = 1
-    a,b = map(int,sys.stdin.readline().split())
+    a, b = map(int, input().split())
     for _ in range(b):
         c *= a
         c %= 10
-    print(c)
+        if c == 0:
+            print(10)
+            break
+    else:
+        print(c)
