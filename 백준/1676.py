@@ -7,7 +7,6 @@ def factory(num):
 cnt = str(factory(int(input())))
 check = 0
 
-
 for i in cnt[::-1]:
     if i == '0':
         check += 1
