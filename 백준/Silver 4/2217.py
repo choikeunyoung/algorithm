@@ -1,8 +1,5 @@
-import math
-
 N = int(input())
 lope_list = []
-new_lope = []
 
 for _ in range(N):
     lope_list.append(int(input()))
