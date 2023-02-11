@@ -13,7 +13,7 @@ word_list = []
 for i in word:
     # i 값이 < 인 경우
     if i == "<":
-        # words에 값이 들어있는경우
+        # words에 값이 들어있는경우 
         if words != "":
             # revers_word에 words에 저장된 문자를 거꾸로 저장
             for j in words[::-1]:
@@ -59,6 +59,7 @@ for i in word:
 for k in words[::-1]:
     reverse_word += k
 # 리스트에 저장된 값들 출력
+print(word_list)
 for l in word_list:
     print(l,end="")
 print(reverse_word)
