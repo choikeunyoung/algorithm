@@ -1,6 +1,5 @@
 S = int(input())
 s = S*2
-print(s)
 n = int(1)
 
 while True:

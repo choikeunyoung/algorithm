@@ -15,20 +15,21 @@ def pri_num():
 
 pri_list = pri_num()
 
-print(len(pri_list))
-# while True:
-#     ans_num = int(input())
-#     if ans_num == 0: break
-#     flag = 0
-#     for k in range(0,len(pri_list)):
-#         for l in range(k, len(pri_list)):
-#             if ((pri_list[k] + pri_list[l]) == ans_num):
-#                 flag = 1
-#                 break
-#             elif ((pri_list[k] + pri_list[l] > ans_num)):
-#                 break
-#         if flag == 1:
-#             print(ans_num,"=",pri_list[k],"+",pri_list[l])
-#             break
-#     else:
-#         print("Goldbach's conjecture is wrong.")
+# 모든 소수 리스트를 탐색하는 것이 아닌 방식으로 다른방식으로 
+
+while True:
+    ans_num = int(input())
+    if ans_num == 0: break
+    flag = 0
+    for k in range(0,len(pri_list)):
+        for l in range(k, len(pri_list)):
+            if ((pri_list[k] + pri_list[l]) == ans_num):
+                flag = 1
+                break
+            elif ((pri_list[k] + pri_list[l] > ans_num)):
+                break
+        if flag == 1:
+            print(ans_num,"=",pri_list[k],"+",pri_list[l])
+            break
+    else:
+        print("Goldbach's conjecture is wrong.")
