@@ -16,7 +16,7 @@ for _ in range(3):
 # y 값이 y_dict에 존재하지 않을 경우 value 에 1을 넣음
     else:
         y_dict[y] = 1
-
+# value 값이 1인 경우 key 출력
 for k,v in x_dict.items():
     if v == 1:
         ans += k
