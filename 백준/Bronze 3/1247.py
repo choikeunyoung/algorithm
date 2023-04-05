@@ -12,4 +12,4 @@ for _ in range(3):
     elif total < 0:
         print("-")
     else:
-        print("0")
+        print("0")z
