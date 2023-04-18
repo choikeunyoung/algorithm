@@ -31,4 +31,8 @@ for i in range(N-1):
                     word_list[i] = word_list[j]
                     word_list[j] = temp
             else:
-                
+                if total_1 > total_2:
+                    temp = word_list[i]
+                    word_list[i] = word_list[j]
+                    word_list[j] = temp
+print(word_list)
