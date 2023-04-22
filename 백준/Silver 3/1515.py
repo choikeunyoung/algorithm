@@ -26,5 +26,4 @@
 #     cnt += 1
 
 
-num = "start1234"
-print(intsum(num))
+print("ABCD" < "Z321")
