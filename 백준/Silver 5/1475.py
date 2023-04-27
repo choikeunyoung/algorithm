@@ -13,15 +13,19 @@ num_dict = {
 }
 
 for i in N:
-    if i == "9" or i == "6":
+    # 9가 들어왔을때 9를 6으로 변경이 가능하므로 둘중 큰 값을 체크해주면된다.
+    if i == "9":
         if num_dict["6"] < num_dict["9"]:
-            num_dict["9"] -= 1
             num_dict["6"] += 1
-        elif num_dict["6"] > num_dict["9"]:
+        elif num_dict["6"] >= num_dict["9"]:
             num_dict["9"] += 1
-            num_dict["6"] -= 1
-        else:
-            num_dict[i] += 1
+    # 마찬가지로 6이 들어왔을때 6도 9로 변경이 가능하므로 둘중 큰 값을 체크해주면 된다.
+    elif i == "6":
+        if num_dict["6"] > num_dict["9"]:
+            num_dict["9"] += 1
+        elif num_dict["6"] <= num_dict["9"]:
+            num_dict["6"] += 1
     else:
         num_dict[i] += 1
-print(num_dict)
+# 제일 큰값에 따라서 몇세트를 사용해야할지 결정된다.
+print(max(num_dict.values()))
