@@ -1,13 +1,18 @@
 N = int(input())
 M = int(input())
 check_list = list(map(int,input().split()))
+check_list.sort()
+
+i = 0
+j = N-1
 cnt = 0
-for i in range(len(check_list)):
-    if check_list[i] != 0:
-        for j in range(i,len(check_list)):
-            check = check_list[i] + check_list[j]
-            if check == M:
-                cnt += 1
-                check_list[i] = 0
-                check_list[j] = 0
-print(cnt,check_list)
+while i < j:
+    if check_list[i] + check_list[j] < M:
+        i += 1
+    elif check_list[i] + check_list[j] == M:
+        cnt += 1
+        i += 1
+        j -= 1
+    else:
+        j -= 1
+print(cnt)
