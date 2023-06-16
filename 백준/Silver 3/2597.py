@@ -1,65 +1,74 @@
 N = int(input())
 
-middle_value = 0
 left = 0
 right = N
-r_check = 0
-l_check = 0
-middle = N/2
-answer = 0
+mid = (left+right)/2
 
-for _ in range(3):
-    A,B = map(int,input().split())
-    if middle_value == 0:
-        check = (A+B)/2
-        if check < middle:
-            left = N-check
-            l_check = 1
-        elif check > middle:
-            right = check
-            r_check = 1
-        else:
-            answer = middle
-            r_check = 1
-            l_check = 1
-        middle = (right+left)/2
-    else:
-        if r_check == 1:
-            if A >= right and B >= right:
-                pass
-            elif max(A,B) >= right and min(A,B) <= right:
-                check = (min(A,B)+(max(A,B)-(max(A,B)-right)))/2
-                if check < middle:
-                    left = right-check
-                    l_check = 1
-                    r_check = 0
-                elif check > middle:
-                    right = check
-                    r_check = 1
-                    l_check = 0
-                else:
-                    answer = middle
-                    r_check = 1
-                    l_check = 1
-                middle = (right+left)/2
-            else:
-                check = (A+B)/2
-                if check < middle:
-                    left = right-check
-                    l_check = 1
-                    r_check = 0
-                elif check > middle:
-                    right = check
-                    r_check = 1
-                    l_check = 0
-                else:
-                    answer = middle
-                    r_check = 1
-                    l_check = 1
-                middle = (right+left)/2
-        elif l_check == 1:
-        
-        else:
+red_point = sorted(list(map(int,input().split())))
+blue_point = sorted(list(map(int,input().split())))
+yellow_point = sorted(list(map(int,input().split())))
 
 
-print(f"{answer:.1f}")
+if red_point[0] != red_point[1]:
+    check = (red_point[0]+red_point[1])/2
+    if check > mid:
+        if blue_point[0] >= check and blue_point[1] >= check:
+            blue_point[0] = 0
+            blue_point[1] = 0
+        elif blue_point[0] <= check and blue_point[1] >= check:
+            blue_point[1] = check-(blue_point[1]-check)
+        if yellow_point[0] >= check and yellow_point[1] >= check:
+            yellow_point[0] = 0
+            yellow_point[1] = 0
+        elif yellow_point[0] <= check and yellow_point[1] >= check:
+            yellow_point[1] = check-(yellow_point[1]-check)
+        right = check
+    elif check <= mid:
+        if blue_point[0] <= check and blue_point[1] <= check:
+            blue_point[0] = 0
+            blue_point[1] = 0
+        elif blue_point[0] <= check and blue_point[1] >= check:
+            blue_point[0] = check+(check-blue_point[0])
+        if yellow_point[0] <= check and yellow_point[1] <= check:
+            yellow_point[0] = 0
+            yellow_point[1] = 0
+        elif yellow_point[0] <= check and yellow_point[1] >= check:
+            yellow_point[0] = check+(check-yellow_point[0])
+        left = check
+
+mid = (right+left)/2
+
+if blue_point[0] != blue_point[1]:
+    check = (blue_point[0]+blue_point[1])/2
+    if check > mid:
+        if yellow_point[0] >= check and yellow_point[1] >= check:
+            yellow_point[0] = 0
+            yellow_point[1] = 0
+        elif yellow_point[0] <= check and yellow_point[1] >= check:
+            yellow_point[1] = check-(yellow_point[1]-check)
+        right = check
+    elif check <= mid:
+        if yellow_point[0] <= check and yellow_point[1] <= check:
+            yellow_point[0] = 0
+            yellow_point[1] = 0
+        elif yellow_point[0] <= check and yellow_point[1] >= check:
+            yellow_point[0] = check+(check-yellow_point[0])
+        left = check
+
+mid = (right+left)/2
+
+if yellow_point[0] != yellow_point[1]:
+    check = (yellow_point[0]+yellow_point[1])/2
+    if check > mid:
+        right = check
+    elif check <= mid:
+        left = check
+answer = right-left
+answer *= 10
+if answer%2 == 0:
+    answer /= 10
+    print(f"{answer:.1f}")
+else:
+    answer -= 1
+    answer /= 10
+    print(f"{answer+0.1:.1f}")
