@@ -1,3 +1,10 @@
+
+K = int(input())
+ans = dp()
+# 들어온 K의 값 출력
+
+print(*ans[K])
+
 def dp():
     # 정답 리스트
     ans_list = [[1,0]]
@@ -5,9 +12,3 @@ def dp():
     for _ in range(45):
         ans_list.append([ans_list[-1][1],ans_list[-1][0]+ans_list[-1][1]])
     return ans_list
-
-
-K = int(input())
-ans = dp()
-# 들어온 K의 값 출력
-print(*ans[K])
