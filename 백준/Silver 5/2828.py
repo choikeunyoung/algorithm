@@ -7,16 +7,42 @@ apples = []
 for _ in range(T):
     apples.append(int(input()))
 
-apples.sort()
-move = 0
-
-for i in range(N):
-    cnt = 0
-    for j in range(T):
-        if apples[j] <= M:
-            cnt += 1
+cnt = 0
+base_value = apples[0]
+flag = 0
+index = 0
+pos = 0
+check = 0
+while True:
+    if flag == 1:
+        if base_value > pos and base_value <= pos+M:
+            cnt += ((pos+M)-base_value)
+            pos = base_value-M
+            index += 1
+            if index == T:
+                break
+            else:
+                base_value = apples[index]
         else:
-            break
-    if cnt == T:
-        print(move)
-    M
+            cnt += 1
+            pos -= 1
+        if pos < 0:
+            flag = 0
+            pos = 0
+    else:
+        if base_value > pos and base_value <= pos+M:
+            cnt += (base_value - pos)
+            pos = base_value
+            index += 1
+            if index == T:
+                break
+            else:
+                base_value = apples[index]
+        else:
+            cnt += 1
+            pos += 1
+        if pos+M >= N:
+            flag = 1
+            pos = N - M + 1
+    print(index,base_value,pos,cnt)
+print(cnt)
