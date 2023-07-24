@@ -35,18 +35,27 @@ for i in range(1,N):
         total = 0
         check_dict = copy.deepcopy(word_dict)
         if len(j) == word_length:
+            word_check = 0
             for l in j:
                 if l in check_dict:
                     check_dict[l] -= 1
+                else:
+                    word_check += 1
             for v in check_dict.values():
                 if v >= 0:
                     total += v
                 else:
-                    total = -10
+                    if v == -1 and word_check == 0:
+                        word_check += 1
+                    else:
+                        total = -10
                     break
-            if total == 0 or total == 1:
-                cnt += 1
-                answer_list.append(j)
+            if total == 0 or (total == 1 and word_check == 1 ):
+                if word_list[i] not in answer_list:
+                    cnt += 1
+                    answer_list.append(word_list[i])
                 break
         print(check_dict,word_dict,total)
 print(cnt,check_list,answer_list)
+
+# 길이가 같을때 조건을 수정하면 해결될 것 같음.
