@@ -56,3 +56,23 @@ print(cnt)
 #             max_index[1] = j
 
 # print(*max_index)
+
+# from pprint import pprint as print
+
+# matrix = [["_", "_", "_", "_", "_"], ["_", "_", "_", "_", "_"], ["_", "_", "_", "_", "_"], ["_", "_", "_", "_", "_"]]
+# for _ in range(2):
+#     pos_x, pos_y = map(int,input().split())
+    
+
+#     dx = [-1, 0, 1, -1, 1, -1, 0, 1]
+#     dy = [-1, -1, -1, 0, 0, 1, 1, 1]
+
+#     for i in range(4):
+#         for j in range(5):
+#             if i == pos_x and j == pos_y:
+#                 for k in range(8):
+#                     x = j + dx[k]
+#                     y = i + dy[k]
+#                     if (0 <= x < 5) and (0 <= y < 4):
+#                         matrix[y][x] = "#"
+# print(matrix)
