@@ -1,9 +1,9 @@
-# def DFS(graph, N, V):
-#     visited = [False] 
-#     w
+def DFS(graph, N, V):
+    visited = [False] 
+    w
     
 
-# def BFS(graph, N, V):
+def BFS(graph, N, V):
     
 
 N, M, V = map(int,input().split())
