@@ -103,110 +103,194 @@
 # print(max_value)
 
 
-# 사과문제
-T = int(input())
+# # 사과문제
+# T = int(input())
 
-for tc in range(1, T + 1):
-    N = int(input())
-    matrix = [list(map(int, input().split())) for _ in range(N)]
+# for tc in range(1, T + 1):
+#     N = int(input())
+#     matrix = [list(map(int, input().split())) for _ in range(N)]
 
-    apples_pos = []
-    for i in range(N):
-        for j in range(N):
-            if matrix[i][j] > 0:
-                apples_pos.append((matrix[i][j], [i, j]))
-    # 1 / 오른쪽 보고있음 , 2 / 아래 , 3 / 왼쪽 , 4 / 위
-    apples_pos.sort(reverse=True)
-    user_direction = 1
-    user_pos = [0, 0]
-    r_cnt = 0
+#     apples_pos = []
+#     for i in range(N):
+#         for j in range(N):
+#             if matrix[i][j] > 0:
+#                 apples_pos.append((matrix[i][j], [i, j]))
+#     # 1 / 오른쪽 보고있음 , 2 / 아래 , 3 / 왼쪽 , 4 / 위
+#     apples_pos.sort(reverse=True)
+#     user_direction = 1
+#     user_pos = [0, 0]
+#     r_cnt = 0
 
-    while apples_pos:
-        goal = apples_pos.pop()
-        goal = goal[1]
-        while user_pos != goal:
-            if (
-                (user_pos[0] < goal[0] and user_pos[1] < goal[1])
-                or (user_pos[0] > goal[0] and user_pos[1] < goal[1])
-                or (user_pos[0] < goal[0] and user_pos[1] > goal[1])
-                or (user_pos[0] > goal[0] and user_pos[1] > goal[1])
-            ):
-                if user_direction == 1:
-                    user_pos[1] += 1
-                elif user_direction == 2:
-                    user_pos[0] += 1
-                elif user_direction == 3:
-                    user_pos[1] -= 1
-                elif user_direction == 4:
-                    user_pos[0] -= 1
-            elif user_pos[0] < goal[0] and user_pos[1] == goal[1]:
-                if user_direction == 1:
-                    r_cnt += 1
-                    user_direction += 1
-                elif user_direction == 2:
-                    pass
-                elif user_direction == 3:
-                    r_cnt += 3
-                    user_direction += 3
-                elif user_direction == 4:
-                    r_cnt += 2
-                    user_direction += 2
-                user_pos[0] += goal[0] - user_pos[0]
-            elif user_pos[0] == goal[0] and user_pos[1] < goal[1]:
-                if user_direction == 1:
-                    pass
-                elif user_direction == 2:
-                    r_cnt += 3
-                    user_direction += 3
-                elif user_direction == 3:
-                    r_cnt += 2
-                    user_direction += 2
-                elif user_direction == 4:
-                    r_cnt += 1
-                    user_direction += 1
-                user_pos[1] += goal[1] - user_pos[1]
-            elif user_pos[0] > goal[0] and user_pos[1] == goal[1]:
-                if user_direction == 1:
-                    r_cnt += 3
-                    user_direction += 3
-                elif user_direction == 2:
-                    r_cnt += 2
-                    user_direction += 2
-                elif user_direction == 3:
-                    r_cnt += 1
-                    user_direction += 1
-                elif user_direction == 4:
-                    pass
-                user_pos[0] += goal[0] - user_pos[0]
-            elif user_pos[0] == goal[0] and user_pos[1] > goal[1]:
-                if user_direction == 1:
-                    r_cnt += 2
-                    user_direction += 2
-                elif user_direction == 2:
-                    r_cnt += 1
-                    user_direction += 1
-                elif user_direction == 3:
-                    pass
-                elif user_direction == 4:
-                    r_cnt += 3
-                    user_direction += 3
-                user_pos[1] += goal[1] - user_pos[1]
-            if user_pos[0] < 0:
-                user_pos[0] = 0
-                user_direction += 1
-                r_cnt += 1
-            elif user_pos[1] < 0:
-                user_pos[1] = 0
-                user_direction += 1
-                r_cnt += 1
-            elif user_pos[0] >= N:
-                user_pos[0] = N - 1
-                user_direction += 1
-                r_cnt += 1
-            elif user_pos[1] >= N:
-                user_pos[1] = N - 1
-                user_direction += 1
-                r_cnt += 1
-            if user_direction > 4:
-                user_direction -= 4
-    print(f"#{tc} {r_cnt}")
+#     while apples_pos:
+#         goal = apples_pos.pop()
+#         goal = goal[1]
+#         while user_pos != goal:
+#             if (
+#                 (user_pos[0] < goal[0] and user_pos[1] < goal[1])
+#                 or (user_pos[0] > goal[0] and user_pos[1] < goal[1])
+#                 or (user_pos[0] < goal[0] and user_pos[1] > goal[1])
+#                 or (user_pos[0] > goal[0] and user_pos[1] > goal[1])
+#             ):
+#                 if user_direction == 1:
+#                     user_pos[1] += 1
+#                 elif user_direction == 2:
+#                     user_pos[0] += 1
+#                 elif user_direction == 3:
+#                     user_pos[1] -= 1
+#                 elif user_direction == 4:
+#                     user_pos[0] -= 1
+#             elif user_pos[0] < goal[0] and user_pos[1] == goal[1]:
+#                 if user_direction == 1:
+#                     r_cnt += 1
+#                     user_direction += 1
+#                 elif user_direction == 2:
+#                     pass
+#                 elif user_direction == 3:
+#                     r_cnt += 3
+#                     user_direction += 3
+#                 elif user_direction == 4:
+#                     r_cnt += 2
+#                     user_direction += 2
+#                 user_pos[0] += goal[0] - user_pos[0]
+#             elif user_pos[0] == goal[0] and user_pos[1] < goal[1]:
+#                 if user_direction == 1:
+#                     pass
+#                 elif user_direction == 2:
+#                     r_cnt += 3
+#                     user_direction += 3
+#                 elif user_direction == 3:
+#                     r_cnt += 2
+#                     user_direction += 2
+#                 elif user_direction == 4:
+#                     r_cnt += 1
+#                     user_direction += 1
+#                 user_pos[1] += goal[1] - user_pos[1]
+#             elif user_pos[0] > goal[0] and user_pos[1] == goal[1]:
+#                 if user_direction == 1:
+#                     r_cnt += 3
+#                     user_direction += 3
+#                 elif user_direction == 2:
+#                     r_cnt += 2
+#                     user_direction += 2
+#                 elif user_direction == 3:
+#                     r_cnt += 1
+#                     user_direction += 1
+#                 elif user_direction == 4:
+#                     pass
+#                 user_pos[0] += goal[0] - user_pos[0]
+#             elif user_pos[0] == goal[0] and user_pos[1] > goal[1]:
+#                 if user_direction == 1:
+#                     r_cnt += 2
+#                     user_direction += 2
+#                 elif user_direction == 2:
+#                     r_cnt += 1
+#                     user_direction += 1
+#                 elif user_direction == 3:
+#                     pass
+#                 elif user_direction == 4:
+#                     r_cnt += 3
+#                     user_direction += 3
+#                 user_pos[1] += goal[1] - user_pos[1]
+#             if user_pos[0] < 0:
+#                 user_pos[0] = 0
+#                 user_direction += 1
+#                 r_cnt += 1
+#             elif user_pos[1] < 0:
+#                 user_pos[1] = 0
+#                 user_direction += 1
+#                 r_cnt += 1
+#             elif user_pos[0] >= N:
+#                 user_pos[0] = N - 1
+#                 user_direction += 1
+#                 r_cnt += 1
+#             elif user_pos[1] >= N:
+#                 user_pos[1] = N - 1
+#                 user_direction += 1
+#                 r_cnt += 1
+#             if user_direction > 4:
+#                 user_direction -= 4
+#     print(f"#{tc} {r_cnt}")
+
+
+# # 문자열 파싱 도둑문제
+
+# words = input()
+
+# answer_list = []
+# answer = ""
+# num = ""
+
+# for word in words:
+#     if word.isdigit():
+#         if answer:
+#             answer_list.append(answer)
+#             answer = ""
+#         num += word
+#     else:
+#         if num:
+#             num = str(int(num) + 17)
+#             answer_list.append(num)
+#             num = ""
+#         answer += word
+        
+#     if len(answer_list) == 2:
+#         print("#".join(answer_list))
+#         answer_list.clear()
+        
+# answer_list.append(str(int(num)+17))
+# print("#".join(answer_list))
+
+# 연산자 더하기
+
+# word = input()
+
+# answer_list = []
+
+# ans = ""
+# last_ope = ""
+# for i in word:
+#     if i == "+" or i == "-":
+#         if answer_list:
+#             if last_ope == "+":
+#                 answer_list[-1] += int(ans)
+#             elif last_ope == "-":
+#                 answer_list[-1] -= int(ans)
+#         else:
+#             answer_list.append(int(ans))
+#         last_ope = i
+#         ans = ""
+#     else:
+#         ans += i
+
+# if last_ope == "+":
+#     print(answer_list[-1]+int(ans))
+# elif last_ope == "-":
+#     print(answer_list[-1]-int(ans))
+
+# 괄호 친구들
+
+words = input()
+
+answer_list = [0]
+ans = ""
+
+big_flag= 0
+small_flag = 0
+
+for word in words:
+    if word == "[":
+        big_flag = 1
+    elif word == "]":
+        answer_list[-1] += int(ans)
+        ans = ""
+        big_flag = 0  
+    elif word == "{":
+        small_flag = 1
+    elif word == "}":
+        answer_list[-1] *= int(ans)
+        ans = ""
+        small_flag = 0
+    if (big_flag == 1 or small_flag == 1) and (word != "[" and word != "{"):
+        ans += word
+
+print(answer_list[-1])
