@@ -1,30 +1,24 @@
 T = int(input())
 for _ in range(T):
-    word = input()
-    pos = 0
-    stack = []
-    for i in word:
-        if i == "<":
-            pos -= 1
-        elif i == ">":
-            pos += 1
-        elif i == "-":
-            if pos >= len(stack):
-                stack.pop()
-            else:
-                stack.pop(pos-1)
+    words = input()
+    current_pos= 0
+    ans = []
+    for word in words:
+        if word == "<":
+            current_pos -= 1
+            if current_pos < 0:
+                current_pos = 0
+        elif word == "-":
+            if ans:
+                ans.pop(current_pos-1)
         else:
-            if pos < len(stack):
-                if pos < 0:
-                    pos = 0
-                if stack:
-                    stack.insert(pos-1,i)
+            if word != ">":
+                if current_pos == len(ans):
+                    ans.append(word)
                 else:
-                    stack.append(i)
-            elif pos >= len(stack):
-                pos = len(stack) - 1
-                stack.append(i)
-            pos += 1
-    for j in stack:
-        print(j,end="")
-    print()
+                    ans.insert(current_pos,word)
+            current_pos += 1
+            if current_pos > len(ans):
+                current_pos = len(ans)
+    answer = "".join(ans)
+    print(answer)
