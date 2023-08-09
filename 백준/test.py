@@ -269,28 +269,112 @@
 
 # 괄호 친구들
 
-words = input()
+# words = input()
 
-answer_list = [0]
-ans = ""
+# answer_list = [0]
+# ans = ""
 
-big_flag= 0
-small_flag = 0
+# big_flag= 0
+# small_flag = 0
 
-for word in words:
-    if word == "[":
-        big_flag = 1
-    elif word == "]":
-        answer_list[-1] += int(ans)
-        ans = ""
-        big_flag = 0  
-    elif word == "{":
-        small_flag = 1
-    elif word == "}":
-        answer_list[-1] *= int(ans)
-        ans = ""
-        small_flag = 0
-    if (big_flag == 1 or small_flag == 1) and (word != "[" and word != "{"):
-        ans += word
+# for word in words:
+#     if word == "[":
+#         big_flag = 1
+#     elif word == "]":
+#         answer_list[-1] += int(ans)
+#         ans = ""
+#         big_flag = 0  
+#     elif word == "{":
+#         small_flag = 1
+#     elif word == "}":
+#         answer_list[-1] *= int(ans)
+#         ans = ""
+#         small_flag = 0
+#     if (big_flag == 1 or small_flag == 1) and (word != "[" and word != "{"):
+#         ans += word
 
-print(answer_list[-1])
+# print(answer_list[-1])
+
+# 년도 나누기
+
+# days = list(map(str,input().split(".")))
+
+# year_cnt = 0
+# month_cnt = 0
+# day_cnt = 0
+
+# if days[0].count("X") >= 1:
+#     year_cnt += 1
+
+# if days[1].count("X") == 1:
+#     month_cnt = 9
+# elif days[1].count("X") == 2:
+#     month_cnt = 3
+
+# if days[2].count("X") == 1:
+#     if len(days[2]) > 1:
+#         if days[2][0] == "X":
+#             if int(days[2][1]) <= 1:
+#                 day_cnt = 3
+#             else:
+#                 day_cnt = 2
+#         else:
+#             day_cnt = 10
+#     else:
+#         day_cnt = 9
+# elif days[2].count("X") == 2:
+#     day_cnt = 22
+
+# if year_cnt > 0 and month_cnt > 0 and day_cnt > 0:
+#     print(year_cnt * day_cnt * month_cnt)
+    
+# elif year_cnt == 0 and month_cnt > 0 and day_cnt > 0:
+#     print(month_cnt * day_cnt)
+    
+# elif year_cnt > 0 and month_cnt == 0 and day_cnt > 0:
+#     print(year_cnt * day_cnt)
+    
+# elif year_cnt > 0 and month_cnt > 0 and day_cnt == 0:
+#     print(year_cnt * month_cnt)
+    
+# elif year_cnt > 0 and month_cnt == 0 and day_cnt == 0:
+#     print(year_cnt)
+    
+# elif year_cnt == 0 and month_cnt > 0 and day_cnt == 0:
+#     print(month_cnt)
+    
+# elif year_cnt == 0 and month_cnt == 0 and day_cnt > 0:
+#     print(day_cnt)
+    
+# else:
+#     print(0)
+
+# 스택
+
+# num_list = [3, 5, 1, 9, 7]
+
+# word = ""
+
+# for _ in range(4):
+#     word += input()
+    
+# for i in word:
+#     if i == "R":
+#         ans = num_list.pop()
+#         num_list.insert(0,ans)
+#     elif i == "L":
+#         ans = num_list.pop(0)
+#         num_list.append(ans)
+
+# print(*num_list)
+
+# 재귀함수
+
+def binary_change(num):
+    if num == 1:
+        return "1"
+    else:
+        return str(num%2) + binary_change(num//2)
+
+N = int(input())
+print(int(binary_change(N)[::-1]))
