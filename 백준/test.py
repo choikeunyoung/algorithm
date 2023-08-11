@@ -370,11 +370,195 @@
 
 # 재귀함수
 
-def binary_change(num):
-    if num == 1:
-        return "1"
-    else:
-        return str(num%2) + binary_change(num//2)
+# def binary_change(num):
+#     if num == 1:
+#         return "1"
+#     else:
+#         return str(num%2) + binary_change(num//2)
 
-N = int(input())
-print(int(binary_change(N)[::-1]))
+# N = int(input())
+# print(int(binary_change(N)[::-1]))
+
+# DFS
+
+# word = list(map(str,input()))
+
+# matrix = [ list(map(int,input().split())) for _ in range(8) ]
+
+# graph = [ [] for _ in range(8) ]
+
+# for i in range(8):
+#     for j in range(7,-1,-1):
+#         if matrix[i][j] == 1:
+#             graph[i].append(j)
+# print(graph)
+# for k in range(len(graph)):
+#     if graph[k]:
+#         stack = graph[k]
+#         break
+
+# visited = [False] * 8
+# ans = word[k:k+1]
+# visited[k] = True
+
+# while stack:
+#     check = stack.pop()
+#     if not visited[check]:
+#         visited[check] = True
+#         ans += word[check:check+1]
+#         stack.extend(graph[check])
+# print("".join(ans))
+
+# DFS 기초
+
+# N = int(input())
+
+# matrix = [ list(map(int,input().split())) for _ in range(N) ]
+
+# graph = [[] for _ in range(N)]
+
+# for i in range(N):
+#     for j in range(N-1,-1,-1):
+#         if matrix[i][j] == 1:
+#             graph[i].append(j)
+            
+# visted = [False] * N
+
+# visted[0] = True
+
+# stack = graph[0]
+# print(0, end=" ")
+# while stack:
+#     check = stack.pop()
+#     if not visted[check]:
+#         visted[check] = True
+#         stack.extend(graph[check])
+#         print(check, end=" ")
+
+# N = int(input())
+# arr = [ list(map(int,input().split())) for _ in range(N) ]
+
+# def DFS(now):
+#     print(now, end=" ")
+#     for i in range(N):
+#         if arr[now][i] == 1:
+#             DFS(i)
+
+# DFS(0)
+
+# # Level 2 도달 시
+
+# N = int(input())
+
+# matrix = [ list(map(int,input().split())) for _ in range(N) ]
+
+# check = [0]
+# visited = [False] * N
+
+# def DFS(now):
+#     cnt = 0
+#     for i in range(N):
+#         if matrix[now][i] == 1:
+#             check.append(i)
+#             DFS(i)
+#         else:
+#             cnt += 1
+#             if len(check) == 3:
+#                 print(*check)
+#                 check.pop()
+#     if cnt < N:
+#         check.pop()
+
+# DFS(0)
+
+# # 추적
+
+# def DFS(point, start):
+#     if point[start] not in check:
+#         if point[start] != -1:
+#             check.append(point[start])
+#             DFS(point, point[start])
+    
+
+# N = int(input())
+
+# evid = [-1, 0, 0, 1, 2, 4, 4]
+# timeStamp = [8, 3, 5, 6, 8 ,9, 10]
+# check = [N]
+
+# DFS(evid,N)
+
+# check.sort()
+
+# for i in check:
+#     if i == 0:
+#         print(f"{i}번 index(출발)")
+#     else:
+#         print(f"{i}번 index({timeStamp[i]}시)")
+
+# 그래프 순회
+
+# N, K = map(int,input().split())
+# start = (int(input())-1)
+
+# graph = [[] for _ in range(N)]
+
+# for _ in range(K):
+#     nodes = list(map(int,input().split()))
+#     graph[nodes[0]-1].append(nodes[1]-1)
+
+# for i in graph:
+#     i.sort(reverse=True)
+
+# post_list = []
+# post_visited = [False] * N
+# pre_list = []
+# pre_visited = [False] * N
+
+# def pre_DFS(start):
+#     pre_visited[start] = True
+#     pre_list.append(start+1)
+#     for node in graph[start]:
+#         if not pre_visited[node]:
+#             pre_DFS(node)
+            
+# def post_DFS(start):
+#     post_visited[start] = True
+#     for node in graph[start]:
+#         if not post_visited[node]:
+#             post_DFS(node)
+#     post_list.append(start+1)
+    
+# pre_DFS(start)
+# post_DFS(start)
+
+# print(*pre_list)
+# print(*post_list)
+
+# 바이러스
+
+computers = int(input())
+total_computers = int(input())
+
+graph = [[0]*computers for _ in range(computers)]
+
+for _ in range(total_computers):
+    pairs = list(map(int,input().split()))
+    graph[pairs[0]-1][pairs[1]-1] = 1
+    graph[pairs[1]-1][pairs[0]-1] = 1
+
+visited = [False] * computers
+cnt = 0
+
+def DFS(start):
+    global cnt
+    if not visited[start]:
+        cnt += 1
+        visited[start] = True
+        for i in range(computers):
+            if graph[start][i] == 1:
+                DFS(i)
+            
+DFS(0)
+
+print(cnt - 1)
