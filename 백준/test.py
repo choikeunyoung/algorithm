@@ -269,28 +269,296 @@
 
 # 괄호 친구들
 
-words = input()
+# words = input()
 
-answer_list = [0]
-ans = ""
+# answer_list = [0]
+# ans = ""
 
-big_flag= 0
-small_flag = 0
+# big_flag= 0
+# small_flag = 0
 
-for word in words:
-    if word == "[":
-        big_flag = 1
-    elif word == "]":
-        answer_list[-1] += int(ans)
-        ans = ""
-        big_flag = 0  
-    elif word == "{":
-        small_flag = 1
-    elif word == "}":
-        answer_list[-1] *= int(ans)
-        ans = ""
-        small_flag = 0
-    if (big_flag == 1 or small_flag == 1) and (word != "[" and word != "{"):
-        ans += word
+# for word in words:
+#     if word == "[":
+#         big_flag = 1
+#     elif word == "]":
+#         answer_list[-1] += int(ans)
+#         ans = ""
+#         big_flag = 0  
+#     elif word == "{":
+#         small_flag = 1
+#     elif word == "}":
+#         answer_list[-1] *= int(ans)
+#         ans = ""
+#         small_flag = 0
+#     if (big_flag == 1 or small_flag == 1) and (word != "[" and word != "{"):
+#         ans += word
 
-print(answer_list[-1])
+# print(answer_list[-1])
+
+# 년도 나누기
+
+# days = list(map(str,input().split(".")))
+
+# year_cnt = 0
+# month_cnt = 0
+# day_cnt = 0
+
+# if days[0].count("X") >= 1:
+#     year_cnt += 1
+
+# if days[1].count("X") == 1:
+#     month_cnt = 9
+# elif days[1].count("X") == 2:
+#     month_cnt = 3
+
+# if days[2].count("X") == 1:
+#     if len(days[2]) > 1:
+#         if days[2][0] == "X":
+#             if int(days[2][1]) <= 1:
+#                 day_cnt = 3
+#             else:
+#                 day_cnt = 2
+#         else:
+#             day_cnt = 10
+#     else:
+#         day_cnt = 9
+# elif days[2].count("X") == 2:
+#     day_cnt = 22
+
+# if year_cnt > 0 and month_cnt > 0 and day_cnt > 0:
+#     print(year_cnt * day_cnt * month_cnt)
+    
+# elif year_cnt == 0 and month_cnt > 0 and day_cnt > 0:
+#     print(month_cnt * day_cnt)
+    
+# elif year_cnt > 0 and month_cnt == 0 and day_cnt > 0:
+#     print(year_cnt * day_cnt)
+    
+# elif year_cnt > 0 and month_cnt > 0 and day_cnt == 0:
+#     print(year_cnt * month_cnt)
+    
+# elif year_cnt > 0 and month_cnt == 0 and day_cnt == 0:
+#     print(year_cnt)
+    
+# elif year_cnt == 0 and month_cnt > 0 and day_cnt == 0:
+#     print(month_cnt)
+    
+# elif year_cnt == 0 and month_cnt == 0 and day_cnt > 0:
+#     print(day_cnt)
+    
+# else:
+#     print(0)
+
+# 스택
+
+# num_list = [3, 5, 1, 9, 7]
+
+# word = ""
+
+# for _ in range(4):
+#     word += input()
+    
+# for i in word:
+#     if i == "R":
+#         ans = num_list.pop()
+#         num_list.insert(0,ans)
+#     elif i == "L":
+#         ans = num_list.pop(0)
+#         num_list.append(ans)
+
+# print(*num_list)
+
+# 재귀함수
+
+# def binary_change(num):
+#     if num == 1:
+#         return "1"
+#     else:
+#         return str(num%2) + binary_change(num//2)
+
+# N = int(input())
+# print(int(binary_change(N)[::-1]))
+
+# DFS
+
+# word = list(map(str,input()))
+
+# matrix = [ list(map(int,input().split())) for _ in range(8) ]
+
+# graph = [ [] for _ in range(8) ]
+
+# for i in range(8):
+#     for j in range(7,-1,-1):
+#         if matrix[i][j] == 1:
+#             graph[i].append(j)
+# print(graph)
+# for k in range(len(graph)):
+#     if graph[k]:
+#         stack = graph[k]
+#         break
+
+# visited = [False] * 8
+# ans = word[k:k+1]
+# visited[k] = True
+
+# while stack:
+#     check = stack.pop()
+#     if not visited[check]:
+#         visited[check] = True
+#         ans += word[check:check+1]
+#         stack.extend(graph[check])
+# print("".join(ans))
+
+# DFS 기초
+
+# N = int(input())
+
+# matrix = [ list(map(int,input().split())) for _ in range(N) ]
+
+# graph = [[] for _ in range(N)]
+
+# for i in range(N):
+#     for j in range(N-1,-1,-1):
+#         if matrix[i][j] == 1:
+#             graph[i].append(j)
+            
+# visted = [False] * N
+
+# visted[0] = True
+
+# stack = graph[0]
+# print(0, end=" ")
+# while stack:
+#     check = stack.pop()
+#     if not visted[check]:
+#         visted[check] = True
+#         stack.extend(graph[check])
+#         print(check, end=" ")
+
+# N = int(input())
+# arr = [ list(map(int,input().split())) for _ in range(N) ]
+
+# def DFS(now):
+#     print(now, end=" ")
+#     for i in range(N):
+#         if arr[now][i] == 1:
+#             DFS(i)
+
+# DFS(0)
+
+# # Level 2 도달 시
+
+# N = int(input())
+
+# matrix = [ list(map(int,input().split())) for _ in range(N) ]
+
+# check = [0]
+# visited = [False] * N
+
+# def DFS(now):
+#     cnt = 0
+#     for i in range(N):
+#         if matrix[now][i] == 1:
+#             check.append(i)
+#             DFS(i)
+#         else:
+#             cnt += 1
+#             if len(check) == 3:
+#                 print(*check)
+#                 check.pop()
+#     if cnt < N:
+#         check.pop()
+
+# DFS(0)
+
+# # 추적
+
+# def DFS(point, start):
+#     if point[start] not in check:
+#         if point[start] != -1:
+#             check.append(point[start])
+#             DFS(point, point[start])
+    
+
+# N = int(input())
+
+# evid = [-1, 0, 0, 1, 2, 4, 4]
+# timeStamp = [8, 3, 5, 6, 8 ,9, 10]
+# check = [N]
+
+# DFS(evid,N)
+
+# check.sort()
+
+# for i in check:
+#     if i == 0:
+#         print(f"{i}번 index(출발)")
+#     else:
+#         print(f"{i}번 index({timeStamp[i]}시)")
+
+# 그래프 순회
+
+# N, K = map(int,input().split())
+# start = (int(input())-1)
+
+# graph = [[] for _ in range(N)]
+
+# for _ in range(K):
+#     nodes = list(map(int,input().split()))
+#     graph[nodes[0]-1].append(nodes[1]-1)
+
+# for i in graph:
+#     i.sort(reverse=True)
+
+# post_list = []
+# post_visited = [False] * N
+# pre_list = []
+# pre_visited = [False] * N
+
+# def pre_DFS(start):
+#     pre_visited[start] = True
+#     pre_list.append(start+1)
+#     for node in graph[start]:
+#         if not pre_visited[node]:
+#             pre_DFS(node)
+            
+# def post_DFS(start):
+#     post_visited[start] = True
+#     for node in graph[start]:
+#         if not post_visited[node]:
+#             post_DFS(node)
+#     post_list.append(start+1)
+    
+# pre_DFS(start)
+# post_DFS(start)
+
+# print(*pre_list)
+# print(*post_list)
+
+# 바이러스
+
+computers = int(input())
+total_computers = int(input())
+
+graph = [[0]*computers for _ in range(computers)]
+
+for _ in range(total_computers):
+    pairs = list(map(int,input().split()))
+    graph[pairs[0]-1][pairs[1]-1] = 1
+    graph[pairs[1]-1][pairs[0]-1] = 1
+
+visited = [False] * computers
+cnt = 0
+
+def DFS(start):
+    global cnt
+    if not visited[start]:
+        cnt += 1
+        visited[start] = True
+        for i in range(computers):
+            if graph[start][i] == 1:
+                DFS(i)
+            
+DFS(0)
+
+print(cnt - 1)
