@@ -14,3 +14,4 @@ def right_park_soo(num):
 N = int(input())
 
 right_park_soo(N)
+print(N)
