@@ -22,3 +22,23 @@ for i in range(1,11):
     for k in data:
         print(k,end=' ')
     print()
+    
+# deque
+
+# from collections import deque
+
+
+# for tc in range(10):
+#     T = int(input())
+#     queue = deque(map(int,input().split()))
+#     cnt = 1
+#     while queue[0] > 0:
+#         check = queue.popleft()
+#         check -= cnt
+#         queue.append(check)
+#         if check <= 0:
+#             queue[-1] = 0
+#             break
+#         cnt = (cnt) % 5 + 1
+#     queue = list(queue)
+#     print(f"#{T}",*queue)
