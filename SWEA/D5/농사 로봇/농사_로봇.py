@@ -109,7 +109,7 @@ def check_possible(dir, base_direction):
         # 만약 씨앗이 심어져있다면 
         if check_day:
             # 요일 - 심었던 요일 차가 5일인 경우
-            if l - check_day[0][-1] == 5:
+            if l - check_day[0][-1] == 6:
                 # 하루에 씨앗을 한개만 심을수 있기때문에 0 번값을 뺌
                 change = check_day.pop(0)
                 # 뽑은 값의 좌표가 2인 경우 3으로 변환
@@ -138,6 +138,8 @@ def check_possible(dir, base_direction):
             if matrix_2[current_pos[0]][current_pos[1]] == 3:
                     matrix_2[current_pos[0]][current_pos[1]] = 0
                     cnt += 1
+    if matrix_2[current_pos_check[0]][current_pos_check[1]] == 3:
+        cnt += 1
     return cnt
 
 T = int(input())
@@ -152,18 +154,18 @@ for tc in range(1, T+1):
     N, M = map(int,input().split())
     matrix = [ list(map(int,input().split())) for _ in range(N) ]
     answer_cnt = 0
-    for i in range(N):
-        for j in range(N):
-            ans = []
-            if matrix[i][j] == 0:
-                # 현재 바라보는 방향이 0, 1, 2, 3 으로 설정하여 각각 cnt 값을 리스트로 저장해 max 값 반환
-                ans.append(check_possible([i,j],0))
-                ans.append(check_possible([i,j],1))
-                ans.append(check_possible([i,j],2))
-                ans.append(check_possible([i,j],3))
-                print(ans, i, j)
-                if max(ans) > answer_cnt:
-                    answer_cnt = max(ans)
+    # for i in range(N):
+    #     for j in range(N):
+    #         ans = []
+    #         if matrix[i][j] == 0:
+    #             # 현재 바라보는 방향이 0, 1, 2, 3 으로 설정하여 각각 cnt 값을 리스트로 저장해 max 값 반환
+    #             ans.append(check_possible([i,j],0))
+    #             ans.append(check_possible([i,j],1))
+    #             ans.append(check_possible([i,j],2))
+    #             ans.append(check_possible([i,j],3))
+    #             # print(ans, i, j)
+    #             if max(ans) > answer_cnt:
+    #                 answer_cnt = max(ans)
     print(f"#{tc} {answer_cnt}")
     
     
