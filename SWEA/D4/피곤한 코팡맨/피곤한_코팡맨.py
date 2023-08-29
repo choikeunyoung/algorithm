@@ -5,6 +5,11 @@ visited = [ [False]*N for _ in range(N) ]
 
 dx = [-1, 0, 1, -1, 1, -1, 0 ,1]
 dy = [-1, -1, -1, 0, 0, 1, 1, 1]
+k_cnt = 0
+for i in range(N):
+    for j in range(N):
+        if matrix[i][j] == "K":
+            k_cnt += 1
 
 for i in range(N):
     for j in range(N):
@@ -12,34 +17,17 @@ for i in range(N):
             min_value = matrix_index[i][j]
             max_value = matrix_index[i][j]
             visited[i][j] = True
-            n_i = i
-            n_j = j
+            ans_list = []
+            cnt = 0
             queue = [(i,j)]
             while queue:
-                print(queue)
                 check = queue.pop(0)
-                check_value = []
-                check_index = []
+                visited[check[0]][check[1]] = True
                 for k in range(8):
-                    ny = check[0] + dy[k]
-                    nx = check[1] + dx[k]
-                    if ( 0 <= ny < N ) and ( 0 <= nx < N ):
-                        if not visited[ny][nx]:
-                            if matrix[ny][nx] == "K":
-                                visited[ny][nx] = True
-                                queue.append((ny,nx))
-                                break
-                            else:
-                                check_value.append(matrix_index[ny][nx])
-                                check_index.append((ny,nx))
-                if check_value:
-                    check_mid = min(check_value)
-                    check_pos = check_value.index(check_mid)
-                    visited[check_index[check_pos][0]][check_index[check_pos][1]] = True
-                    queue.append((check_index[check_pos][0],check_index[check_pos][1]))
-                    if min_value > check_mid:
-                        min_value = check_mid
-
-                    if max_value < check_mid:
-                        max_value = check_mid
-print(min_value,max_value)
+                    ny = i + dy[k]
+                    nx = j + dx[k]
+                    if ( 0 <= nx < N ) and ( 0 <= ny < N ):
+                        
+                if cnt == k_cnt:
+                    break
+print(max_value-min_value)
