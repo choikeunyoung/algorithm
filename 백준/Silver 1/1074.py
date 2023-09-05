@@ -1,11 +1,21 @@
 N, r, c = map(int,input().split())
 
-matrix = [ [0] * 2**N for _ in range(2**N)]
+matrix = [ [0] * 2**(N+1) for _ in range(2**(N+1))]
 
 cnt = 0
 
-def searching(N):
-    for i in range(0,2**N,2**N//4):
-        print(i*(2**N))
+direction = [(-1, -1), (-1, 0), (0, -1), (0, 0)]
 
-searching(N)
+def searching(pos, N):
+    global cnt
+    if N == 2:
+        matrix[pos[0]][pos[1]] = cnt
+        cnt += 1
+        for dy, dx in direction:
+            matrix[pos[0]+dx][pos[1]+dy] = cnt
+            cnt += 1
+    else:
+        for i in range(4):
+            
+
+searching(([2**N],[2**N]),N)
