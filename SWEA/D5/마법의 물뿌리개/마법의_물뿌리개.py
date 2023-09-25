@@ -9,22 +9,20 @@ for tc in range(1, T + 1):
     for i in range(N):
         tree_list[i] = max_tree - tree_list[i]
         total += tree_list[i]
-    print(total)
     if total == 0:
         print(f"#{tc} {day}")
     else:
-        while total > 0:
-            day += 1
-            if day % 2 == 0:
-                for k in range(N):
-                    if tree_list[k] != 0 and tree_list[k]%2 == 0:
-                        tree_list[k] -= 2
-                        total -= 2
-                        break
-            else:
-                for k in range(N):
-                    if tree_list[k] != 0 and tree_list[k]%2 == 1:
-                        tree_list[k] -= 1
-                        total -= 1
-                        break
+        for i in range(N):
+            if tree_list[i] != 0:
+                day += (tree_list[i]//3)*2
+                tree_list[i] = tree_list[i] - (tree_list[i]//3)*3
+        total = sum(tree_list)
+        print(total)
+        if total%3 == 0:
+            day += (total//3)*2
+        else:
+            if total%3 == 2:
+                
+            elif total%3 == 1:
+                
         print(f"#{tc} {day}")
