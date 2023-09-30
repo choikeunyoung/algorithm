@@ -1,19 +1,16 @@
 def DFS(num):
-    if num == M:
-        answer.add(ans[:])
+    if len(ans) == M:
+        print(*ans)
         return
     else:
-        for i in range(N):
+        for i in range(num, N):
             ans.append(num_list[i])
-            DFS(num+1)
+            DFS(i)
             ans.pop()
 
-N, M = map(int,input().split())
-num_list = list(map(int,input().split()))
-num_list.sort()
-ans = ()
-answer = set()
-DFS(0)
 
-for i in answer:
-    print(*i)
+N, M = map(int, input().split())
+num_list = list(map(int, input().split()))
+num_list.sort()
+ans = []
+DFS(0)
