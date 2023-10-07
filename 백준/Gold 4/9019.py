@@ -2,78 +2,58 @@ from collections import deque
 import sys
 
 input = sys.stdin.readline
-
+# 2배 해주는 함수
 def Double(num):
-    num *= 2
-    if num >= 10000:
-        return num % 10000
-    else:
-        return num
-
+    return (num * 2) % 10000
+# -1 해주는 함수
 def Subtrack(num):
-    if num == 0:
-        return 9999
-    else:
-        return num - 1
-
-def Left_Rotate(num):
-    num = 
-    if len(num) < 4:
-        for _ in range(4-len(num)):
-            num.appendleft("0")
-    num.rotate(-1)
-    num = int("".join(num))
-    return num
-    
-def Right_Rotate(num):
-    num = str(num)
-    num = deque(map(str,num))
-    if len(num) < 4:
-        for _ in range(4-len(num)):
-            num.appendleft("0")
-    num.rotate(1)
-    num = int("".join(num))
-    return num
-
-
-def BFS(start,target):
-    queue = deque([])
-    queue.append(start)
+    return (num - 1) if num > 0 else 9999
+# 너비우선탐색
+def BFS(start, target):
+    # 방문처리 체크
+    visited = [False] * 10000
+    # queue 에 값과 어떤 결과를 시행했는지 자정
+    queue = deque([(start, "")])
+    # 시작값 방문처리
+    visited[start] = True
+    # queue가 존재할 경우 계속 반복
     while queue:
-        check = queue.popleft()
-        dobule_num = Double(check)
-        subtrack_num = Subtrack(check)
-        left_num = Left_Rotate(check)
-        right_num = Right_Rotate(check)
-        if not ans_list[dobule_num]:
-            ans_list[dobule_num] = ans_list[check] + "D"
-            queue.append(dobule_num)
-        if not ans_list[subtrack_num]:
-            ans_list[subtrack_num] = ans_list[check] + "S"
-            queue.append(subtrack_num)
-        if not ans_list[left_num]:
-            ans_list[left_num] = ans_list[check] + "L"
-            queue.append(left_num)
-        if not ans_list[right_num]:
-            ans_list[right_num] = ans_list[check] + "R"
-            queue.append(right_num)
-            
+        current, path = queue.popleft()
+        # 2배 한 함수와 -1 한 함수 시행한 결과값 변수에 저장
+        dobule_num = Double(current)
+        subtrack_num = Subtrack(current)
+        # left 로 움직이는 방법과 right로 움직이는 방법 변수에 저장
+        left_num = (current % 1000) * 10 + (current // 1000)
+        right_num = (current % 10) * 1000 + (current // 10)
+        # 목표값과 같으면 현재 path + 각 연산을 결과를 출력
         if dobule_num == target:
-            print(ans_list[dobule_num])
-            break
+            print(path + "D")
+            return
         elif subtrack_num == target:
-            print(ans_list[subtrack_num])
-            break
+            print(path + "S")
+            return
         elif left_num == target:
-            print(ans_list[left_num])
-            break
+            print(path + "L")
+            return
         elif right_num == target:
-            print(ans_list[right_num])
-            break
-            
+            print(path + "R")
+            return
+        # 저장된 숫자를 방문하지 않았을 경우 저장된 숫자 + 연산자를 queue에 추가해줌
+        if not visited[dobule_num]:
+            visited[dobule_num] = True
+            queue.append((dobule_num, path + "D"))
+        if not visited[subtrack_num]:
+            visited[subtrack_num] = True
+            queue.append((subtrack_num, path + "S"))
+        if not visited[left_num]:
+            visited[left_num] = True
+            queue.append((left_num, path + "L"))
+        if not visited[right_num]:
+            visited[right_num] = True
+            queue.append((right_num, path + "R"))
+
 N = int(input())
 
 for _ in range(N):
-    problem, answer = map(int,input().split())
-    ans_list = ["" for _ in range(10000)]
-    BFS(problem,answer)
+    problem, answer = map(int, input().split())
+    BFS(problem, answer)
