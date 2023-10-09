@@ -1,33 +1,31 @@
-def back_tracking(num,m):
-    if len(num) == m:
-        
-
+def calculator(num):
+    global ans
+    answer = ""
+    if num == N:
+        ans.append(str(num))
+        for i in ans:
+            if i == " ":
+                if eval(answer) != 0:
+                    answer = str(eval(answer))
+                else:
+                    answer = answer + i
+            else:
+                answer += i
+        if eval(answer) == 0:
+            print(answer)
+        ans.pop()
+        return
+    else:
+        for i in ["+", "-", " "]:
+            ans.append(str(num))
+            ans.append(i)
+            calculator(num+1)
+            ans.pop()
+            ans.pop()
 T = int(input())
 
 for _ in range(T):
     N = int(input())
-    num_list = []
-    # operator_list = ["+", "-", " "]
-    for i in range(1,N+1):
-        num_list.append(str(i))
-
-    # stack = []
-
-    # for j in range(3):
-    #     stack.append(num_list[0]+operator_list[j]+num_list[1])
-
-    # for i in range(2,N):
-    #     stack_length = len(stack)
-    #     for j in range(stack_length):
-    #         for k in range(3):
-    #             stack.append(stack[j]+operator_list[k]+num_list[i])
+    ans = []
     
-    # answer_list = []
-
-    # for i in stack:
-    #     answer = 0
-    #     for j in range(N):
-    #         if j == '+':
-    #             answer += (int(i[j-1])+int(i[j+1]))
-    #         elif j == "-":
-    #             answer += (int(i[j-1]))
+    calculator(1)
