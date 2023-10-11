@@ -1,25 +1,24 @@
-word = input().strip()
-word_length = len(word)
-answer = []
-ans = ""
-
+word = input()
+num_stack = []
+other_stack = []
+ans = 0
 for i in word:
-    if i == "(":
-        answer.append(ans)
-        ans = ""
-    elif i == ")":
-        if ans != "":
-            check = int(answer.pop())
-            rest = check%10
-            ans *= rest
-            check //= 10
-            if check != 0:
-                check = str(check)
-                ans = check + ans
+    if i == ")":
+        while num_stack[-1] != "(":
+            other_stack.append(num_stack.pop())
+        num_stack.pop()
+        check = len(other_stack)
+        check = int(num_stack.pop())*check
+        if ans == 0:
+            ans += check
+        else:
+            ans += check-1
+        num_stack.append(str(check))
+        other_stack = []
     else:
-        ans += i
+        num_stack.append(i)
+
+answer = "".join(num_stack)
+
+ans += len(answer)-1
 print(ans)
-if ans == "":
-    print(0)
-else:
-    print(len(ans))
