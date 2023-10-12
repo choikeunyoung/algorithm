@@ -1,24 +1,29 @@
 word = input()
 num_stack = []
 other_stack = []
-ans = 0
 for i in word:
+    ans = 0
     if i == ")":
         while num_stack[-1] != "(":
-            other_stack.append(num_stack.pop())
+            check_num = num_stack.pop()
+            if isinstance(check_num, int):
+                ans += check_num
+            else:
+                other_stack.append(check_num)
         num_stack.pop()
-        check = len(other_stack)
-        check = int(num_stack.pop())*check
-        if ans == 0:
-            ans += check
-        else:
-            ans += check-1
-        num_stack.append(str(check))
+        check = len(other_stack) + ans
+        num_stack.append(int(num_stack.pop())*check)
         other_stack = []
     else:
         num_stack.append(i)
-
-answer = "".join(num_stack)
-
-ans += len(answer)-1
-print(ans)
+answer = ""
+ans = 0
+for i in num_stack:
+    if isinstance(i,int):
+        ans += i
+    else:
+        answer += i
+if answer != "":
+    print(len(answer)+ans)
+else:
+    print(ans)
