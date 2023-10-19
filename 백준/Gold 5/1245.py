@@ -5,7 +5,8 @@ direction = [(-1,-1), (-1,0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1)]
 def BFS(start):
     global cnt
     q = deque([start])
-    visited[start[0]][start[1]] = matrix[start[0]][start[1]]
+    if visited[start[0]][start[1]] == 0:
+        visited[start[0]][start[1]] = matrix[start[0]][start[1]]
     while q:
         flag = 0
         check = q.popleft()
@@ -13,16 +14,25 @@ def BFS(start):
             ny = check[0] + direction[k][0]
             nx = check[1] + direction[k][1]
             if ( 0 <= ny < N ) and ( 0 <= nx < M ):
-                if matrix[ny][nx] > matrix[check[0]][check[1]] and visited[check[0]][check[1]] >= matrix[ny][nx]:
-                    flag = 1
-                    visited[ny][nx] = visited[check[0]][check[1]]
-                    q = deque([])
-                    break
-                elif matrix[ny][nx] == matrix[start[0]][start[1]] and not visited[ny][nx]:
-                    visited[ny][nx] = matrix[start[0]][start[1]]
-                    q.append((ny,nx))
-                elif matrix[ny][nx] < matrix[check[0]][check[1]] or visited[check[0]][check[1]] < matrix[ny][nx]:
-                    visited[check[0]][check[1]] = visited[ny][nx]
+                if matrix[ny][nx] > matrix[check[0]][check[1]]:
+                    if visited[ny][nx] == 0:
+                        visited[ny][nx] = matrix[check[0]][check[1]]
+                    else:
+                        visited[check[0]][check[1]] = matrix[ny][nx]
+                elif matrix[ny][nx] == matrix[check[0]][check[1]]:
+                    if visited[check[0]][check[1]] == 0:
+                        q.append((ny,nx))
+                    else:
+                        if visited[check[0]][check[1]] < matrix[ny][nx]:
+                            visited[check[0]][check[1]] = matrix[ny][nx]
+                            q.append((ny,nx))
+                        else:
+                            flag = 1
+                            q = deque([])
+                            break
+                else:
+                    if matrix[ny][nx] < matrix[check[0]][check[1]]:
+                        visited[ny][nx] = visited[check[0]][check[1]]
         if flag == 1:
             break
     else:
