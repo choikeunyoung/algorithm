@@ -14,25 +14,17 @@ def BFS(start):
             ny = check[0] + direction[k][0]
             nx = check[1] + direction[k][1]
             if ( 0 <= ny < N ) and ( 0 <= nx < M ):
-                if matrix[ny][nx] > matrix[check[0]][check[1]]:
-                    if visited[ny][nx] == 0:
-                        visited[ny][nx] = matrix[check[0]][check[1]]
-                    else:
-                        visited[check[0]][check[1]] = matrix[ny][nx]
+                if matrix[ny][nx] < matrix[check[0]][check[1]]:
+                    visited[ny][nx] = visited[check[0]][check[1]]
                 elif matrix[ny][nx] == matrix[check[0]][check[1]]:
-                    if visited[check[0]][check[1]] == 0:
+                    if not visited[ny][nx]:
+                        visited[ny][nx] = visited[check[0]][check[1]]
                         q.append((ny,nx))
                     else:
-                        if visited[check[0]][check[1]] < matrix[ny][nx]:
-                            visited[check[0]][check[1]] = matrix[ny][nx]
-                            q.append((ny,nx))
-                        else:
-                            flag = 1
-                            q = deque([])
-                            break
-                else:
-                    if matrix[ny][nx] < matrix[check[0]][check[1]]:
-                        visited[ny][nx] = visited[check[0]][check[1]]
+                        if visited[ny][nx] < matrix[ny][nx]:
+                            visited[ny][nx] = matrix[ny][nx]
+                elif matrix[ny][nx] < visited[check[0]][check[1]]:
+                    flag = 1
         if flag == 1:
             break
     else:
