@@ -19,9 +19,6 @@ def BFS(start):
                     visited[ny][nx] = True
                     q.append((ny,nx))
 
-
-
-
 N, M = map(int,input().split())
 
 matrix = [ list(map(int,input().split())) for _ in range(N) ]
