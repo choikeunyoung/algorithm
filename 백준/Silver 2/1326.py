@@ -5,7 +5,6 @@ def BFS():
     q = deque([start])
     visited[start] = 1
     while q:
-        print(visited)
         check = q.popleft()
         distance = end - check
         if distance % num_list[check] == 0:
