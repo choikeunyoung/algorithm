@@ -28,19 +28,30 @@ for _ in range(N):
     if max_y < point[1]:
         max_y = point[1]
 
+y_total = max_y - min_y
+x_total = max_x - min_x
+
 for i in range(min_y, max_y+1):
     square_point.add((min_x,i))
     square_point.add((max_x,i))
-
 
 for i in range(min_x+1, max_x):
     square_point.add((i,min_y))
     square_point.add((i,max_y))
 
 cnt = 0
-print(check_list)
+
 for k in square_point:
     if k in check_list:
         cnt += 1
 
-print(cnt)
+if len(check_list) == cnt:
+    if y_total == x_total:
+        print(y_total)
+    else:
+        if max_x != 0 and min_x != 0 and max_y != 0 and min_y != 0:
+            print(-1)
+        else:
+            print(max(y_total, x_total))
+else:
+    print(-1)
