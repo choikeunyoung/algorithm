@@ -1,46 +1,47 @@
 import sys
-from collections import defaultdict, deque
+import heapq
 
 input = sys.stdin.readline
-
+# 시작점을 기준으로 다익스트라 시작
 def BFS(init):
-    queue = deque(matrix[init])
-    visited[init] = True
-    for i in matrix[init]:
-        distance[i[0]] = i[1]
-
+    # queue 리스트 생성
+    queue = []
+    # 우선순위 큐 생성
+    heapq.heappush(queue,(0,init))
+    distance[init] = 0
+    # queue 가 빌때까지 실행
     while queue:
-        now, dist = queue.popleft()
-
+        # queue에 거리, 노드 순으로 저장
+        dist, now = heapq.heappop(queue)
+        # 노드의 거리가 현재 거리보다 작은경우 무시
         if distance[now]<dist:
             continue
-        # 현재 노드와 연결된 다른 인접한 노드들을 확인
+        # 외의 경우 현재 노드와 연결된 노드를 반복
         for i in matrix[now]:
-            cost = dist + i[1]
+            # 현재 거리 + 연결된 노드의 가중치 증가
+            cost = dist + i[0]
             # 현재 노드를 거쳐서, 다른 노드로 이동하는 거리가 더 짧은 경우
-            if cost < distance[i[0]]:
-                distance[i[0]]=cost
-                queue.append((i[0],cost))
+            if cost < distance[i[1]]:
+                # 거리 값을 최소값으로 갱신
+                distance[i[1]]=cost
+                # queue 리스트에 가중치, 노드 순으로 저장
+                heapq.heappush(queue,(cost,i[1]))
 
 V, E = map(int,input().split())
 
-visited = [False] * (V+1)
 distance = [10**9] * (V+1)
 start = int(input())
 
-matrix = defaultdict(list)
+matrix = [[] for _ in range(V+1)]
 
 for _ in range(E):
     S, E, W = map(int,input().split())
-    matrix[S].append((E, W))
+    matrix[S].append((W, E))
 
 BFS(start)
 
 for i in range(1,V+1):
-    if i != start:
-        if distance[i] == 10**9:
-            print("INF")
-        else:
-            print(distance[i])
+    if distance[i] == 10**9:
+        print("INF")
     else:
-        print(0)
+        print(distance[i])
