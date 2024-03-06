@@ -8,9 +8,10 @@ direction = [(0,-1), (-1,0), (0,1), (1,0)]
 distance = [ [10**9]*N for _ in range(M) ]
 
 def dijkstra():
-    queue = (1, (0,0))
+    queue = [1, (0,0)]
     distance[0][0] = 1
     while queue:
+        print(queue)
         dist, now = heapq.heappop(queue)
         if distance[now[0]][now[1]] < dist:
             continue
@@ -19,4 +20,18 @@ def dijkstra():
             ny = now[0] + direction[k][0]
             nx = now[1] + direction[k][1]
             if 0 <= ny < M and 0 <= nx < N:
-                
+                if matrix[ny][nx] == 0:
+                    if distance[ny][nx] == 10**9:
+                        distance[ny][nx] = dist
+                        heapq.heappush(queue,(ny,nx))
+                    else:
+                        if distance[ny][nx] > dist:
+                            distance[ny][nx] = dist
+                            heapq.heappush(queue,(ny,nx))
+                else:
+                    if distance[ny][nx] == 10**9:
+                        distance[ny][nx] = dist + 1
+                        heapq.heappush(queue,(ny,nx))
+
+dijkstra()
+print(distance)
