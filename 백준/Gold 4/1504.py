@@ -16,7 +16,6 @@ for _ in range(M):
 target_1, target_2 = map(int,input().split())
 
 
-
 def dijkstra(start, end):
     queue = []
     heapq.heappush(queue, matrix[start])
