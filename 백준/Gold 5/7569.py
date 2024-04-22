@@ -31,7 +31,7 @@ while True:
         for k in range(4):
             ny = direction[k][0] + check[0]
             nx = direction[k][1] + check[1]
-            if (0 <= ny < M*H) and (0 <= nx < N):
+            if (0 <= ny < M*H) and (0 <= nx < N) and (ny != 0 and ny % M == 0):
                 if tomato[ny][nx] == 0:
                     tomato[ny][nx] = 1
                     zero_cnt -= 1
