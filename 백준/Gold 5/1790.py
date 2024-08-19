@@ -1,29 +1,15 @@
-N, k = map(int,input().split())
-ans = 0
-num = 1
+N, K = map(int,input().split())
 
-while num <= N:
-    ans += (N-num+1)
-    num *= 10
-print(ans)
-if N >= 10:
-    num //= 10
-    check = ans - (N-(num+1))
-    k -= (num+1)
-    num_length = len(str(num))
-    answer = k%num_length
-    print(k, check)
-    if k > check:
-        print(-1)
-    else:
-        if answer == 0:
-            num += (k//num_length)
-        else:
-            num += (k//num_length) + 1
-        num = str(num)
-        print(num[answer])
+one_pos = 9
+pos = 1
+ans = 0
+while K > one_pos*pos:
+    K -= pos*one_pos
+    ans += one_pos
+    one_pos *= 10
+    pos += 1
+ans += ((K-1)//pos)+1
+if ans > N:
+    print(-1)
 else:
-    if N < k:
-        print(-1)
-    else:
-        print(N)
+    print(str(ans)[(K-1)%pos])
