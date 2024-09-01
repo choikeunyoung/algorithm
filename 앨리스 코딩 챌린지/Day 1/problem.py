@@ -22,30 +22,41 @@
 
 
 def backtracking(length):
+    # 조합만들기!!
+    # N 길이만큼
     global number_length
     global number
     global min_value
+    # N 길이가 됐을 경우 리스트 int 로 변환하여 join
     if length == number_length:
         num = int("".join(num_list))
+        # 그 값이 들어온 input 값보다 큰 경우
         if num > int(number):
+            # min value 와 값비교해서 갱신
             if num < min_value:
                 min_value = num
         return
-
+    # N 길이만큼 반복
     for i in range(number_length):
+        # N이 개수가 있는 경우 반복문 시행
         if num_dict[number[i]] != 0:
+            # 리스트에 i인덱스 값 추가
             num_list.append(number[i])
+            # 딕셔너리에서 -1
             num_dict[number[i]] -= 1
+            # 재귀 실행
             backtracking(length + 1)
             num_dict[number[i]] += 1
             num_list.pop()
 
 
 min_value = 10**9
-
+# 길이 구하기위해 문자열로 받음
 number = input().strip()
 number_length = len(number)
+# 조합 리스트
 num_list = []
+# 개수가 몇들어있는지 체크
 num_dict = {}
 for i in number:
     if i in num_dict:
