@@ -42,5 +42,6 @@ for i in range(N):
         # 방문하지 않았을 경우 DFS 실행
         if visited[i][j] == 0:
             max_value = max(max_value,DFS((i,j)))
+            print(visited,i,j)
 
 print(max_value)
