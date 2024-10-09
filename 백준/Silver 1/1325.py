@@ -20,7 +20,7 @@ def BFS(start):
 
 N, M = map(int,input().split())
 graph = [set() for _ in range(N+1)]
-ans_list = []
+ans_list = ""
 for _ in range(M):
     A, B = map(int,input().split())
     graph[B].add(A)
@@ -32,9 +32,9 @@ for i in range(1,N+1):
     answer_cnt = BFS(i)
     if answer_cnt > max_value:
         max_value = answer_cnt
-        ans_list = []
-        ans_list.append(i)
+        ans_list = ""
+        ans_list += str(i)+" "
     elif answer_cnt == max_value:
-        ans_list.append(i)
+        ans_list += str(i)+" "
 
-print(*ans_list)
+print(ans_list.strip())
