@@ -30,12 +30,13 @@ while leaf_node:
         # 그래프와 연결된 값들 순회
         for j in graph[i]:
             # j 노드와 i 노드의 연결을 제거
-            graph[j].remove(i)
+            graph[j].remove(i) # (1,2,3) i = 2 (1,3)
             # 제거한 노드와 개수가 1개인 경우 => 리프 노드
             if len(graph[j]) == 1:
                 # 리프 노드에 값 추가
                 leaf_node.append(j)
         # i 노드 방문 처리
+        print(i)
         visited[i] = 1
         # i 노드와 연결된 그래프 초기화 위에서 연결을 제거했기 때문에
         graph[i] = []
