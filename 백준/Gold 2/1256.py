@@ -18,6 +18,7 @@ def searching(N, M, K):
             K -= count
             M -= 1
         # 길이 1개 감소
+        print(result,N,M,K)
         total -= 1
 
     return ''.join(result)
