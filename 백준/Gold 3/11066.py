@@ -21,6 +21,7 @@ for tc in range(T):
             for current in range(start,end):
                 cost = dp[start][current] + dp[current+1][end] + (pre_sum[end + 1] - pre_sum[start])
                 dp[start][end] = min(dp[start][end],cost)
+    print(dp[0])
     print(dp[0][-1])
 
 
